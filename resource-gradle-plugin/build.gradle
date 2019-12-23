@@ -1,0 +1,58 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: "com.gradle.plugin-publish"
+
+repositories {
+    jcenter()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation gradleApi()
+}
+
+version = "1.0.0"    //配置插件的版本号
+group = "com.syc.plugin"   //插件的群组，插件的classpath会用到
+
+pluginBundle {
+
+    website = 'http://www.xiuniyilian.top/'
+    vcsUrl = 'https://github.com/zcys12173/TestApp'
+    description = 'android screen match'  //插件描述
+    tags = ['dimens', 'android']  //插件的tag。可以通过这个在插件门户上搜索
+
+    plugins {
+        greetingsPlugin {
+            id = 'com.syc.plugin.DimensPlugin'   //插件的id，到时候apply的插件id
+            displayName = 'Android dimens plugin'
+        }
+    }
+}
+
+//publish to local directory
+//def versionName = "1.0.11"
+//group "com.syc.plugin"
+//version versionName
+//
+//uploadArchives{ //当前项目可以发布到本地文件夹中
+//    repositories {
+//        mavenDeployer {
+//            repository(url: uri('./repo')) //定义本地maven仓库的地址
+//        }
+//    }
+//}
