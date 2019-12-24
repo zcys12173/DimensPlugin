@@ -1,14 +1,14 @@
 package com.syc.plugin
 
-class DimensReader {
+class DimensIO {
     private String dimensContent = ""
     private String dimensPath = ""
-    private static DimensReader instance
-    private DimensReader() {}
+    private static DimensIO instance
+    private DimensIO() {}
 
     static def getInstance(){
         if(instance == null){
-            instance = new DimensReader()
+            instance = new DimensIO()
         }
         return instance
     }
@@ -29,7 +29,7 @@ class DimensReader {
                 appendDimens(s)
             }
         } else {//处理sp
-            def dimenItem = "<dimen name=\"text_size_$key\">" + dimenValue + "sp</dimen>"
+            def dimenItem = "<dimen name=\"sp_$key\">" + dimenValue + "sp</dimen>"
             println("new dimen item : $dimenItem")
             if (!dimensContent.contains(dimenItem)) {
                 def s = "\n     $dimenItem"
@@ -46,9 +46,18 @@ class DimensReader {
             return
         }
         File file = new File(dimensPath)
-        if (file.exists()) {
-            dimensContent = file.text
+        if (!file.exists()) {
+            File parentFile = file.parentFile
+            if(!parentFile.exists()){
+                parentFile.mkdirs()
+            }
+            StringBuilder sb = new StringBuilder()
+            sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+            sb.append("<resources>\n")
+            sb.append("</resources>")
+            file.text = sb.toString()
         }
+        dimensContent = file.text
     }
 
 
@@ -62,6 +71,8 @@ class DimensReader {
         if (dimensPath.isEmpty()) {
             return
         }
+        int index = dimensContent.lastIndexOf("</resources>")
+        dimensContent = dimensContent.substring(0, index).concat('\n').concat(dimensContent.substring(index))
         File file = new File(dimensPath)
         if (file.exists()) {
             file.text = dimensContent

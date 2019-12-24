@@ -22,4 +22,11 @@ class LogHelper {
         }
 
     }
+
+    static def e(String msg){
+        if(loggable){
+            logger.error(msg)
+        }
+
+    }
 }

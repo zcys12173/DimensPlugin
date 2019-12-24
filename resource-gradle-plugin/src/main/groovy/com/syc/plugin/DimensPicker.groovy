@@ -8,13 +8,13 @@ class DimensPicker {
      * @param path 遍历启始路径
      */
     static def extractDimens(String path) {
-        DimensReader.getInstance().init(path)
+        DimensIO.getInstance().init(path)
         File file = new File(path)
         if (!file.exists()) {
             return
         }
         traversalFile(file)
-        DimensReader.getInstance().writeToDimens()
+        DimensIO.getInstance().writeToDimens()
     }
 
     /**
@@ -41,6 +41,7 @@ class DimensPicker {
      * @param content
      */
     private static def handlerLayoutFile(File file) {
+        println("处理文件：${file.name}")
         String content = file.text
         def result = replaceDpByDependencies(content)
         file.text = result
@@ -57,18 +58,17 @@ class DimensPicker {
         //	def regEx = "\"([1-9]|(0\\.))+[0-9]*(dp|sp)\""
         def matcher = content =~ regEx
         def isMatched = matcher.find()
-        //	println("是否找到匹配到相关内容：$isMatched")
         if (isMatched) {
             def temp = content.substring(matcher.start(), matcher.end())
-            println("temp = $temp")
+//            println("temp = $temp")
             if (temp.contains("dp")) {
-                DimensReader.getInstance().checkDimensExist(temp.substring(1, temp.lastIndexOf("dp")), true)
+                DimensIO.getInstance().checkDimensExist(temp.substring(1, temp.lastIndexOf("dp")), true)
                 def dimenKey = temp.substring(1, temp.lastIndexOf("dp")).replace(".", "_")
                 content = content.replace(temp, "\"@dimen/dp_$dimenKey\"")
             } else {
-                DimensReader.getInstance().checkDimensExist(temp.substring(1, temp.lastIndexOf("sp")), false)
+                DimensIO.getInstance().checkDimensExist(temp.substring(1, temp.lastIndexOf("sp")), false)
                 def dimenKey = temp.substring(1, temp.lastIndexOf("sp")).replace(".", "_")
-                content = content.replaceAll(temp, "\"@dimen/text_size_$dimenKey\"")
+                content = content.replaceAll(temp, "\"@dimen/sp_$dimenKey\"")
             }
             return replaceDpByDependencies(content)
         } else {

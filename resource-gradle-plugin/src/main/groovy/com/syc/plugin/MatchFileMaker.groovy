@@ -9,8 +9,16 @@ class MatchFileMaker {
     private static def baseScreenWidth = 375
 
     static def createMatchFiles(String resourcePath ,DimensConfigExtension config) {
+        println(config.toString())
+        if(config.baseSize == 0){
+            LogHelper.e("没有配置基准尺寸，请设置baseSize")
+            return
+        }
+        if(config.matchSizes.size() == 0){
+            LogHelper.e("没有配置适配尺寸，请设置matchSizes")
+            return
+        }
         println(config.baseSize)
-        println(config.matchSizes.size())
         config.matchSizes.each {
             println(it)
         }
@@ -49,9 +57,9 @@ class MatchFileMaker {
             def regEx = "[0-9]+\\.?[0-9]*"
             def matcher = value =~ regEx
             def isMatched = matcher.find()
-            println("是否找到匹配到相关内容：$isMatched")
+//            println("是否找到匹配到相关内容：$isMatched")
             if (isMatched) {
-                println(value.substring(matcher.start(), matcher.end()))
+//                println(value.substring(matcher.start(), matcher.end()))
                 def dimenValue = Float.parseFloat(value.substring(matcher.start(), matcher.end()))
                 def realValue = dimenValue/ratio
                 sb.append(String.format('%.4f',realValue))

@@ -2,13 +2,13 @@ package com.syc.plugin
 
 class DimensConfigExtension {
     List<Integer> matchSizes=[]
-    int baseSize = 320
+    int baseSize = 0
 
-    void matchSizes(List<Integer> matchSizes) {
+    void matchConfig(List<Integer> matchSizes) {
         this.matchSizes = matchSizes
     }
 
-    void baseSize(int baseSize) {
+    void baseConfig(int baseSize) {
         this.baseSize = baseSize
     }
 }

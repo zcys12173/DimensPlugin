@@ -23,20 +23,20 @@ class DimensPlugin implements Plugin<Project> {
     /**
      * 初始化插件
      */
-    private def init(){
+    private static def init(){
         initExtensions()
         LogHelper.init(project)
         initTasks()
     }
 
-    private def initExtensions(){
+    private static def initExtensions(){
         config = project.project.extensions.create("dimensConfig", DimensConfigExtension)
     }
 
     /**
      * 创建任务
      */
-    private def initTasks(){
+    private static def initTasks(){
         createDimensBuilderTask()
         createDimensPickerTask()
     }
@@ -45,7 +45,7 @@ class DimensPlugin implements Plugin<Project> {
      * 创建dimens提取任务
      * @return
      */
-    private def createDimensPickerTask(){
+    private static def createDimensPickerTask(){
         def task = project.task("pickDimens")
         task.group = "dimens"
         task.description = "提取资源文件中的dp/sp到dimens.xml中并自动替换"
@@ -58,12 +58,13 @@ class DimensPlugin implements Plugin<Project> {
      *
      * @return
      */
-    private def createDimensBuilderTask(){
+    private static def createDimensBuilderTask(){
         def fileBuilderTask = project.task("createMatchFiles")
         fileBuilderTask.group = "dimens"
-        fileBuilderTask.description = "生成适配dimens"
+        fileBuilderTask.description = "生成适配dimens文件"
         fileBuilderTask.doLast {
             def path = PathUtils.getPathFromProject(project)
+            println(path)
             MatchFileMaker.createMatchFiles(path,config)
         }
     }
