@@ -9,3 +9,4 @@
 /captures
 .externalNativeBuild
 .cxx
+/gradle/properties-script.gradle
