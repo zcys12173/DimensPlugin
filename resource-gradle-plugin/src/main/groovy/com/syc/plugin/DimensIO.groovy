@@ -18,7 +18,9 @@ class DimensIO {
     }
 
     def checkDimensExist(String dimenValue, boolean isDp) {
+        LogHelper.w("checkDimensExist:$dimensContent")
         if (dimensContent.isEmpty()) {
+            LogHelper.w("readDimens")
             readDimens()
         }
         def key = dimenValue.replace(".", "_")
@@ -46,7 +48,7 @@ class DimensIO {
             return
         }
         File file = new File(dimensPath)
-        if (!file.exists()) {
+        if (!file.exists()) {//如果没有dimens.xml文件，手动创建一个文件
             File parentFile = file.parentFile
             if(!parentFile.exists()){
                 parentFile.mkdirs()
@@ -56,28 +58,33 @@ class DimensIO {
             sb.append("<resources>\n")
             sb.append("</resources>")
             file.text = sb.toString()
+            file.createNewFile()
         }
         dimensContent = file.text
     }
 
 
     private def appendDimens(String value) {
-        int index = dimensContent.lastIndexOf("</resources>")
+        int index = dimensContent.lastIndexOf("</resources>") - 1
         dimensContent = dimensContent.substring(0, index).concat(value).concat(dimensContent.substring(index))
-        LogHelper.d(dimensContent)
     }
 
     def writeToDimens(){
+        LogHelper.w("开始写入新内容到dimens.xml文件,内容：$dimensContent")
         if (dimensPath.isEmpty()) {
             return
         }
-        int index = dimensContent.lastIndexOf("</resources>")
-        dimensContent = dimensContent.substring(0, index).concat('\n').concat(dimensContent.substring(index))
+//        LogHelper.e("$dimensContent")
+//        int index = dimensContent.indexOf("</resources>")
+//        LogHelper.e("$index")
+//        LogHelper.w("w$index")
+//        dimensContent = dimensContent.substring(0, index).concat('\n').concat(dimensContent.substring(index))
         File file = new File(dimensPath)
-        if (file.exists()) {
+        LogHelper.w("${file.exists()} ---${dimensContent.isEmpty()}}")
+        if (file.exists() && !dimensContent.isEmpty()) {
             file.text = dimensContent
         }
-
+        LogHelper.w("完成写入新内容到dimens.xml文件")
     }
 
 }

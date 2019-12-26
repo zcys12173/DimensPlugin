@@ -30,7 +30,6 @@ class DimensPicker {
             }
         } else {
             if (file.getName().endsWith(".xml") && file.getName() != "dimens.xml") {
-                LogHelper.d("检测文件：${file.getName()}")
                 handlerLayoutFile(file)
             }
         }
@@ -41,10 +40,11 @@ class DimensPicker {
      * @param content
      */
     private static def handlerLayoutFile(File file) {
-        println("处理文件：${file.name}")
+        LogHelper.w("处理文件：${file.name} 开始")
         String content = file.text
         def result = replaceDpByDependencies(content)
         file.text = result
+        LogHelper.w("处理文件：${file.name} 结束")
     }
 
 
@@ -58,6 +58,7 @@ class DimensPicker {
         //	def regEx = "\"([1-9]|(0\\.))+[0-9]*(dp|sp)\""
         def matcher = content =~ regEx
         def isMatched = matcher.find()
+        LogHelper.w("isMatched=$isMatched")
         if (isMatched) {
             def temp = content.substring(matcher.start(), matcher.end())
 //            println("temp = $temp")

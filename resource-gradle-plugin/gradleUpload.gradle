@@ -1,6 +1,6 @@
 apply plugin: "com.gradle.plugin-publish"
 
-version = "1.0.1"    //配置插件的版本号
+version = "1.0.2"    //配置插件的版本号
 group = "com.syc.plugin"   //插件的群组，插件的classpath会用到
 
 

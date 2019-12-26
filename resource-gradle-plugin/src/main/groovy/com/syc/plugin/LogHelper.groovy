@@ -23,10 +23,21 @@ class LogHelper {
 
     }
 
+    static def i(String msg){
+        if(loggable){
+            logger.info(msg)
+        }
+    }
+
+    static def w(String msg){
+        if(loggable){
+            logger.warn(msg)
+        }
+    }
+
     static def e(String msg){
         if(loggable){
             logger.error(msg)
         }
-
     }
 }

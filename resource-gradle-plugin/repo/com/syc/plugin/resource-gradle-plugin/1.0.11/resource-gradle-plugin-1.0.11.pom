@@ -4,5 +4,5 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.syc.plugin</groupId>
   <artifactId>resource-gradle-plugin</artifactId>
-  <version>1.0.17</version>
+  <version>1.0.11</version>
 </project>
