@@ -25,10 +25,10 @@ android {
     }
 }
 
-//dimensConfig {
-//    baseConfig=20
-//    matchSizes=[320,360]
-//}
+dimensConfig {
+    baseSize=375
+    matchSizes=[320,360]
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dp_22">352.0000dp</dimen>
-    <dimen name="sp_44">704.0000sp</dimen>
+    <dimen name="dp_20">17.0667dp</dimen>
+    <dimen name="dp_59_33">50.6283dp</dimen>
+    <dimen name="sp_44">37.5467sp</dimen>
+    <dimen name="sp_66">56.3200sp</dimen>
 </resources>
