@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="dp_20">19.2000dp</dimen>
-    <dimen name="dp_59_33">56.9568dp</dimen>
-    <dimen name="sp_44">42.2400sp</dimen>
-    <dimen name="sp_66">63.3600sp</dimen>
+    <dimen name="dp_30_21">29.0016dp</dimen>
+    <dimen name="sp_18">17.2800sp</dimen>
 </resources>

@@ -4,13 +4,8 @@
 ## 添加依赖
 主build.gralde中添加 
 buildscript {  
-  repositories {  
-    maven {  
-      url "https://plugins.gradle.org/m2/"  
-    }  
-  }  
   dependencies {  
-    classpath "gradle.plugin.com.syc.plugin:resource-gradle-plugin:1.0.0"  
+    classpath 'com.syc.plugin:resource:0.0.1'  
   }  
 }  
 

@@ -4,9 +4,9 @@ buildscript {
     repositories {
         google()
         jcenter()
-        maven{
-            url '/Users/liguiting/Documents/androidstudio_workplace/ResourcePlugin/resource-gradle-plugin/repo'
-        }
+//        maven{
+//            url '/Users/liguiting/Documents/androidstudio_workplace/ResourcePlugin/resource-gradle-plugin/repo'
+//        }
         //发布到gradle插件平台
         maven {
             url "https://plugins.gradle.org/m2/"
@@ -14,10 +14,14 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
-        classpath 'com.syc.plugin:resource-gradle-plugin:1.0.11'
+//        classpath 'com.syc.plugin:resource-gradle-plugin:1.0.11'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        //发布到gradle插件平台
-        classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
+        classpath 'com.syc.plugin:resource:0.0.1'
+
+        //maven发布
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+
     }
 }
 

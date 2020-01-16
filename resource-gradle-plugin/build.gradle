@@ -1,6 +1,7 @@
 apply plugin: 'groovy'
-apply from:'gradleUpload.gradle'
-apply from:'maven.gradle'
+//apply from:'gradleUpload.gradle'
+//apply from:'maven.gradle'
+apply from:'jcenter.gradle'
 dependencies {
     implementation gradleApi()
 }
