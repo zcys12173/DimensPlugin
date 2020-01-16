@@ -10,3 +10,4 @@
 .externalNativeBuild
 .cxx
 /gradle/properties-script.gradle
+/resource-gradle-plugin/jcenter.gradle
