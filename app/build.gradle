@@ -6,6 +6,12 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.syc.plugin.DimensPlugin'
 
+dimensConfig {
+    baseSize=375
+    matchSizes=[320,360,375,384,392,400,410,411]
+}
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -23,11 +29,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-dimensConfig {
-    baseSize=375
-    matchSizes=[320,360]
 }
 
 dependencies {
