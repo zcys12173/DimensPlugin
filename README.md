@@ -27,4 +27,6 @@ gradle app:pickDimens
 gradle app:createMatchFiles  
 
 在右侧的gradle task列表中的dimens下可找到对应的task  
+![Image text](https://raw.githubusercontent.com/zcys12173/DimensPlugin/master/img-folder/run_task.png)
+
 
