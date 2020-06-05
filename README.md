@@ -8,7 +8,7 @@ buildscript {
     classpath 'com.syc.plugin:resource:0.0.1'  
   }  
 }  
-
+![Image text](https://raw.githubusercontent.com/zcys12173/DimensPlugin/master/img-folder/build_gradle.png)
 在需要的工程中添加如下插件  
 apply plugin: "com.syc.plugin.DimensPlugin"  
 
@@ -19,7 +19,7 @@ dimensConfig {
     baseSize=375//基准（值为屏幕的宽度dp值）  
     matchSizes=[320,360]//所需适配的尺寸（值为屏幕的宽度dp值）  
 }  
-
+![Image text](https://raw.githubusercontent.com/zcys12173/DimensPlugin/master/img-folder/app_build_gradle.png)
 ## 使用方法
 1.提取xml中的dp sp值  
 gradle app:pickDimens  
